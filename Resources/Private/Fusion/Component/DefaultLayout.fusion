@@ -1,0 +1,14 @@
+include: resource://Neos.Fusion/Private/Fusion/Root.fusion
+include: resource://Neos.Fusion.Form/Private/Fusion/Root.fusion
+
+prototype(NeosRulez.Neos.Cloudflare:Component.DefaultLayout) < prototype(Neos.Fusion:Component) {
+
+    content = false
+
+    renderer = afx`
+        <div class="neos-content neos-container-fluid">
+            {props.content}
+        </div>
+    `
+    @process.debugDump = Neos.Fusion:DebugDump
+}

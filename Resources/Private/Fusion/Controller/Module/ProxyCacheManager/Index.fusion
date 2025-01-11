@@ -1,0 +1,31 @@
+NeosRulez.Neos.Cloudflare.Module.ProxyCacheManagerController.index = Neos.Fusion:Component {
+
+    renderer = afx`
+        <NeosRulez.Neos.Cloudflare:Component.DefaultLayout>
+            <table @if={zones && Array.length(zones) > 0} class="neos-table">
+                <thead>
+                <tr>
+                    <td>Zone name</td>
+                    <td>E-Mail</td>
+                    <td>&nbsp;</td>
+                </tr>
+                </thead>
+                <tbody>
+                <Neos.Fusion:Loop items={zones} itemName="zone">
+                    <tr>
+                        <td>{zone.zoneName}</td>
+                        <td>{zone.email}</td>
+                        <td class="neos-action">
+                            <div class="neos-pull-right">
+                                <Neos.Fusion:Link.Action class="neos-button neos-button-primary" href.package="NeosRulez.Neos.Cloudflare" href.controller="Module\\ProxyCacheManager" href.action="flush" href.arguments.zoneName={zone.zoneName} >
+                                    <i class="fas fa-sync icon-white" style="margin-right:0.5rem"></i> Flush
+                                </Neos.Fusion:Link.Action>
+                            </div>
+                        </td>
+                    </tr>
+                </Neos.Fusion:Loop>
+                </tbody>
+            </table>
+        </NeosRulez.Neos.Cloudflare:Component.DefaultLayout>
+    `
+}

@@ -1,0 +1,11 @@
+privilegeTargets:
+  Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege:
+    'NeosRulez.Neos.Cloudflare:Module.ProxyCacheManagerControllerActions':
+      matcher: 'method(NeosRulez\Neos\Cloudflare\Controller\Module\ProxyCacheManagerController->.*Action())'
+
+roles:
+  'Neos.Neos:AbstractEditor':
+    privileges:
+      -
+        privilegeTarget: 'NeosRulez.Neos.Cloudflare:Module.ProxyCacheManagerControllerActions'
+        permission: GRANT
