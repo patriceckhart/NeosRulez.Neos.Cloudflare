@@ -68,13 +68,15 @@ class ProxyCacheService
         $result = [];
         if($this->proxyCacheApiConfiguration) {
             foreach ($this->proxyCacheApiConfiguration as $configuration) {
-                if($zoneName === null || $zoneName === $configuration['zoneName']) {
-                    $adapter = $this->adapter($configuration['email'], $configuration['apiKey']);
-                    $zones = new Zones($adapter);
-                    $result[] = [
-                        'zoneName' => $configuration['zoneName'],
-                        'result' => $this->flush($zones, $configuration['zoneName'])
-                    ];
+                if(array_key_exists('email', $configuration) && array_key_exists('apiKey', $configuration) && array_key_exists('zoneName', $configuration)) {
+                    if($zoneName === null || $zoneName === $configuration['zoneName']) {
+                        $adapter = $this->adapter($configuration['email'], $configuration['apiKey']);
+                        $zones = new Zones($adapter);
+                        $result[] = [
+                            'zoneName' => $configuration['zoneName'],
+                            'result' => $this->flush($zones, $configuration['zoneName'])
+                        ];
+                    }
                 }
             }
         }
