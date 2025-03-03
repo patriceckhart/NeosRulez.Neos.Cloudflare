@@ -20,14 +20,19 @@ NeosRulez:
         default:
           zoneName: 'domain1.tld'
           apiKey: '8843d7f92416211de9ebb963ff4ce281259'
-          email: 'mail@domain.tld'
         second:
           zoneName: 'domain2.tld'
           apiKey: '8843d7f92416211de9ebb963ff4ce281259'
-          email: 'mail@domain.tld'
 ```
 
 ## Author
 
 * E-Mail: mail@patriceckhart.com
 * URL: http://www.patriceckhart.com 
+
+
+## How to create an API Key
+
+* Visit [Cloudflare](https://dash.cloudflare.com/profile/api-tokens)
+* Create new User API Token
+* Add Permission to Purge Cache `Cache Purge:Purge`
