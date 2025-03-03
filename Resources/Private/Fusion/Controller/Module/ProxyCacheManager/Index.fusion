@@ -6,7 +6,6 @@ NeosRulez.Neos.Cloudflare.Module.ProxyCacheManagerController.index = Neos.Fusion
                 <thead>
                 <tr>
                     <td>Zone name</td>
-                    <td>E-Mail</td>
                     <td>&nbsp;</td>
                 </tr>
                 </thead>
@@ -14,7 +13,6 @@ NeosRulez.Neos.Cloudflare.Module.ProxyCacheManagerController.index = Neos.Fusion
                 <Neos.Fusion:Loop items={zones} itemName="zone">
                     <tr>
                         <td>{zone.zoneName}</td>
-                        <td>{zone.email}</td>
                         <td class="neos-action">
                             <div class="neos-pull-right">
                                 <Neos.Fusion:Link.Action class="neos-button neos-button-primary" href.package="NeosRulez.Neos.Cloudflare" href.controller="Module\\ProxyCacheManager" href.action="flush" href.arguments.zoneName={zone.zoneName} >

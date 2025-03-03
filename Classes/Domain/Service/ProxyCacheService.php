@@ -6,7 +6,7 @@ namespace NeosRulez\Neos\Cloudflare\Domain\Service;
  */
 
 use Neos\Flow\Annotations as Flow;
-use Cloudflare\API\Auth\APIKey;
+use Cloudflare\API\Auth\APIToken;
 use Cloudflare\API\Adapter\Guzzle;
 use Cloudflare\API\Endpoints\Zones;
 use Neos\Flow\Log\ThrowableStorageInterface;
@@ -24,13 +24,12 @@ class ProxyCacheService
     protected $throwableStorage;
 
     /**
-     * @param string $email
      * @param string $apiKey
      * @return Guzzle
      */
-    private function adapter(string $email, string $apiKey): Guzzle
+    private function adapter(string $apiKey): Guzzle
     {
-        $auth = new APIKey($email, $apiKey);
+        $auth = new APIToken($apiKey);
         return new Guzzle($auth);
     }
 
@@ -68,9 +67,9 @@ class ProxyCacheService
         $result = [];
         if($this->proxyCacheApiConfiguration) {
             foreach ($this->proxyCacheApiConfiguration as $configuration) {
-                if(array_key_exists('email', $configuration) && array_key_exists('apiKey', $configuration) && array_key_exists('zoneName', $configuration)) {
+                if(array_key_exists('apiKey', $configuration) && array_key_exists('zoneName', $configuration)) {
                     if($zoneName === null || $zoneName === $configuration['zoneName']) {
-                        $adapter = $this->adapter($configuration['email'], $configuration['apiKey']);
+                        $adapter = $this->adapter($configuration['apiKey']);
                         $zones = new Zones($adapter);
                         $result[] = [
                             'zoneName' => $configuration['zoneName'],
