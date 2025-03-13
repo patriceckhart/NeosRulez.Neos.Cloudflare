@@ -68,7 +68,7 @@ class ProxyCacheService
         if($this->proxyCacheApiConfiguration) {
             foreach ($this->proxyCacheApiConfiguration as $configuration) {
                 if(array_key_exists('apiKey', $configuration) && array_key_exists('zoneName', $configuration)) {
-                    if($zoneName === null || $zoneName === $configuration['zoneName']) {
+                    if(!empty($zoneName) && $zoneName === $configuration['zoneName']) {
                         $adapter = $this->adapter($configuration['apiKey']);
                         $zones = new Zones($adapter);
                         $result[] = [
