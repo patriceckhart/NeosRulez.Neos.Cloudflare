@@ -2,6 +2,20 @@
 
 A Neos CMS package that flushes the Cloudflare proxy cache when publishing. Provides a backend module for manual flushing and a cli job.
 
+## Compatibility
+
+| Package | Neos    |
+|---------|---------|
+| `^2.0`  | `^9.0`  |
+| `^1.0`  | `^8.3`  |
+
+On Neos 9 the flush is triggered by a content repository catch up hook that reacts to content being
+published into the `live` workspace. It replaces the `afterNodePublishing` signal used on Neos 8,
+which no longer exists in the event sourced content repository.
+
+`cloudflare/sdk` is required as `^2.0`: only that release line allows `psr/http-message ^2.0`,
+whereas `1.4.0` caps it at `~1.0` and would block a future Neos/Flow move to PSR-7 v2.
+
 ## Installation
 
 Just run:
